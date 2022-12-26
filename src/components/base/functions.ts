@@ -27,6 +27,7 @@ export function setElementFor(
   )
 
   if (element) {
+    element.className = value
     element[param] = value
     element[content] = text
   }

@@ -45,13 +45,13 @@ class Products {
       setElement(
         '.products__description-price',
         'textContent',
-        item.price,
+        item.price.toString(),
         productsClone
       )
       setElement(
         '.products__description-rating',
         'textContent',
-        item.rating,
+        item.rating.toString(),
         productsClone
       )
       setElement(

@@ -29,7 +29,9 @@ class AppController extends AppLoader {
           productsContainer.setAttribute('data-category', categoryId)
           super.getResp({
             options: {
-              sources: nameContainer.nextElementSibling?.innerHTML,
+              sources: nameContainer.nextElementSibling
+                ? nameContainer.nextElementSibling?.innerHTML
+                : nameContainer.innerHTML,
             },
             callback,
           })

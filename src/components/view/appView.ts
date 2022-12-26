@@ -1,7 +1,7 @@
 import Products from './products/products'
 import Categories from './categories/categories'
 import Filters from './filter/filter'
-import {FilterItems, SrcItem} from '../base/base'
+import {SrcItem} from '../base/base'
 
 export class AppView {
   public products: Products
@@ -17,13 +17,14 @@ export class AppView {
   public drawProducts(data: SrcItem[]) {
     const values: SrcItem[] = data ?? []
     this.products.draw(values)
+    this.filters.draw(values)
   }
 
   public drawCategories(values: SrcItem[] = []) {
     this.categories.draw(values)
   }
 
-  public drawFilters(values: FilterItems[] = []) {
+  public drawFilters(values: SrcItem[] = []) {
     this.filters.draw(values)
   }
 }

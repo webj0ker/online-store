@@ -7,24 +7,31 @@ export interface Config<SrcItem> {
   options?: Options
 }
 
-export interface FilterItems {
-  options?: Options
+export interface FilterProduct {
+  name: string
+  stock: number
 }
-
+export interface FilterParams {
+  brand: FilterProduct[]
+  minRating: number
+  maxRating: number
+  minPrice: number
+  maxPrice: number
+}
 export interface RespItem {
   products: SrcItem[]
-  total: Number
-  skip: Number
-  limit: Number
+  total: number
+  skip: number
+  limit: number
 }
 
 export interface SrcItem {
   id: string
   title: string
-  price: string
+  price: number
   discountPercentage: string
-  rating: string
-  stock: string
+  rating: number
+  stock: number
   brand: string
   category: string
   description: string
