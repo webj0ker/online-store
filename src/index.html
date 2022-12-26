@@ -28,6 +28,41 @@
       <div class="wrapper">
         <div class="categories buttons">
           <div class="categories__wrapper"></div>
+          <div class="filters__wrapper">
+            <div class="filter-option brand">
+              <div class="filter-list"></div>
+            </div>
+            <div class="search-item d-flex text-center">
+              <div class="form-group col-sm-4">
+                <label for="exampleFormControlSelect1">Color</label>
+                <select class="form-control" id="color">
+                  <option data-filter="all">All</option>
+                  <option data-filter="yellow">Yellow</option>
+                  <option data-filter="green">Green</option>
+                  <option data-filter="orange">Orange</option>
+                </select>
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="exampleFormControlSelect1">Size</label>
+                <select class="form-control" id="size">
+                  <option data-filter="all">All</option>
+                  <option data-filter="s">S</option>
+                  <option data-filter="m">M</option>
+                  <option data-filter="l">L</option>
+                  <option data-filter="xl">XL</option>
+                </select>
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="exampleFormControlSelect1">Brand</label>
+                <select class="form-control" id="brand">
+                  <option data-filter="all">All</option>
+                  <option class="options" data-filter="adidas">Adidas</option>
+                  <option class="options" data-filter="puma">Puma</option>
+                  <option class="options" data-filter="gucci">Gucci</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="products"></div>
       </div>
@@ -53,6 +88,14 @@
     <template id="categoryItemTemp">
       <div class="category__item">
         <span class="category__item-name"></span>
+      </div>
+    </template>
+
+    <template id="filterItemTemp">
+      <div class="filter__item">
+        <input type="filter__item-checkbox" id="filter__item-name" />
+        <label for="filter__item-name"></label>
+        <span class="filter__item-count"></span>
       </div>
     </template>
 

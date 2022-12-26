@@ -7,6 +7,10 @@ export interface Config<SrcItem> {
   options?: Options
 }
 
+export interface FilterItems {
+  options?: Options
+}
+
 export interface RespItem {
   products: SrcItem[]
   total: Number
