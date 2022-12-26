@@ -45,7 +45,7 @@ class Loader {
         if (!callback) {
           return
         }
-        var tmpArray: string[] = []
+        const tmpArray: string[] = []
         //data.products = this.sources;
         callback(
           data.products.filter((item) =>
