@@ -1,0 +1,7 @@
+.filter-option {
+  border: 1px solid orange;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 5%;
+  display: block;
+}
