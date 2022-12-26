@@ -38,7 +38,8 @@ class Loader {
     return false
   }
   private load({callback, options = {}}: Config<SrcItem>) {
-    fetch('../../src/assets/products.json')
+    // fetch('../../src/assets/products.json')
+    fetch('https://dummyjson.com/products/')
       .then((res: Response) => Loader.errorHandler(res))
       .then((res: Response) => res.json())
       .then((data: RespItem) => {
