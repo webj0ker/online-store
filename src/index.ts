@@ -1,7 +1,5 @@
-import './style.scss'
-import {Component} from './components/component'
+import App from './components/app/app'
+import './global.css'
 
-const component = new Component()
-component.hello()
-
-alert(1)
+const app: App = new App()
+app.start()
