@@ -40,6 +40,8 @@ class Filters {
     const fragment: DocumentFragment = document.createDocumentFragment()
     const filtersItemTemp: Nullable<HTMLTemplateElement> =
       document.querySelector<HTMLTemplateElement>('#filterItemTemp')
+    const filtersSliderItemTemp: Nullable<HTMLTemplateElement> =
+      document.querySelector<HTMLTemplateElement>('#filterSliderItemTemp')
 
     filterParams.brand.forEach((item: FilterProduct) => {
       const filterClone: Nullable<HTMLTemplateElement> =
@@ -63,8 +65,45 @@ class Filters {
       )
       fragment.append(filterClone)
     })
-    setElement('.filter-list', 'innerHTML', '')
-    document.querySelector<HTMLElement>('.filter-list')?.append(fragment)
+    setElement('.filter-list-brand', 'innerHTML', '')
+    document.querySelector<HTMLElement>('.filter-list-brand')?.append(fragment)
+
+    const filterClone: Nullable<HTMLTemplateElement> =
+      filtersSliderItemTemp?.content?.cloneNode(true) as HTMLTemplateElement
+    setElement('.filter__range-caption', 'textContent', 'Price', filterClone)
+    setElement(
+      '.from-data',
+      'textContent',
+      `${filterParams.minPrice}`,
+      filterClone
+    )
+    setElement(
+      '.to-data',
+      'textContent',
+      `${filterParams.maxPrice}`,
+      filterClone
+    )
+    fragment.append(filterClone)
+    //setElement('.filter-list-range', 'innerHTML', '');
+    //document.querySelector<HTMLElement>('.filter-list-range')?.append(fragment);
+    const filterClone2: Nullable<HTMLTemplateElement> =
+      filtersSliderItemTemp?.content?.cloneNode(true) as HTMLTemplateElement
+    setElement('.filter__range-caption', 'textContent', 'Rating', filterClone2)
+    setElement(
+      '.from-data',
+      'textContent',
+      `${filterParams.minRating}`,
+      filterClone2
+    )
+    setElement(
+      '.to-data',
+      'textContent',
+      `${filterParams.maxRating}`,
+      filterClone2
+    )
+    fragment.append(filterClone2)
+    setElement('.filter-list-range', 'innerHTML', '')
+    document.querySelector<HTMLElement>('.filter-list-range')?.append(fragment)
   }
 }
 

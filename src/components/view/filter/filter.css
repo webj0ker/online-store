@@ -5,3 +5,37 @@
   margin-bottom: 5%;
   display: block;
 }
+
+.filter__range-caption {
+  margin: 0;
+  padding: 0 35%;
+}
+
+.filter__range-out-data {
+  display: flex;
+  justify-content: space-around;
+}
+
+input[type='range'] {
+  appearance: none;
+  width: 96%;
+  margin: 2%;
+  overflow: hidden;
+  outline: none;
+  background: linear-gradient(orange, orange) no-repeat center;
+  background-size: 100% 2px;
+  pointer-events: none;
+}
+
+.filter__range-multi-range {
+  position: relative;
+  height: 2rem;
+}
+
+.filter__range-multi-range input[type='range']:nth-child(2) {
+  background: none;
+}
+
+.filter__range-multi-range input[type='range'] {
+  position: absolute;
+}

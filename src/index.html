@@ -29,8 +29,11 @@
         <div class="categories buttons">
           <div class="categories__wrapper"></div>
           <div class="filters__wrapper">
-            <div class="filter-option brand">
-              <div class="filter-list"></div>
+            <div class="filter-option">
+              <div class="filter-list-brand"></div>
+            </div>
+            <div class="filter-option">
+              <div class="filter-list-range"></div>
             </div>
             <div class="search-item d-flex text-center">
               <div class="form-group col-sm-4">
@@ -98,6 +101,23 @@
         <span class="filter__item-count"></span>
       </div>
     </template>
+
+    <template id="filterSliderItemTemp">
+      <div class="filter__range">
+        <h3 class="filter__range-caption"></h3>
+        <div class="filter__range-out-data">
+          <div class="from-data"></div>
+          <!---->
+          ⟷
+          <div class="to-data"></div>
+        </div>
+        <div class="filter__range-multi-range">
+          <input type="range" min="0" max="48" class="range-left-point" />
+          <input type="range" min="0" max="48" class="range-right-point" />
+        </div>
+      </div>
+    </template>
+    <app-dual-slider> </app-dual-slider>
 
     <template id="productsItemTemp">
       <div class="products__item">
