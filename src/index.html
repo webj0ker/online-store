@@ -35,36 +35,6 @@
             <div class="filter-option">
               <div class="filter-list-range"></div>
             </div>
-            <div class="search-item d-flex text-center">
-              <div class="form-group col-sm-4">
-                <label for="exampleFormControlSelect1">Color</label>
-                <select class="form-control" id="color">
-                  <option data-filter="all">All</option>
-                  <option data-filter="yellow">Yellow</option>
-                  <option data-filter="green">Green</option>
-                  <option data-filter="orange">Orange</option>
-                </select>
-              </div>
-              <div class="form-group col-sm-4">
-                <label for="exampleFormControlSelect1">Size</label>
-                <select class="form-control" id="size">
-                  <option data-filter="all">All</option>
-                  <option data-filter="s">S</option>
-                  <option data-filter="m">M</option>
-                  <option data-filter="l">L</option>
-                  <option data-filter="xl">XL</option>
-                </select>
-              </div>
-              <div class="form-group col-sm-4">
-                <label for="exampleFormControlSelect1">Brand</label>
-                <select class="form-control" id="brand">
-                  <option data-filter="all">All</option>
-                  <option class="options" data-filter="adidas">Adidas</option>
-                  <option class="options" data-filter="puma">Puma</option>
-                  <option class="options" data-filter="gucci">Gucci</option>
-                </select>
-              </div>
-            </div>
           </div>
         </div>
         <div class="products"></div>
@@ -106,19 +76,29 @@
       <div class="filter__range">
         <h3 class="filter__range-caption"></h3>
         <div class="filter__range-out-data">
-          <div class="from-data"></div>
+          <div class="from-data" id="fromData"></div>
           <!---->
           ⟷
-          <div class="to-data"></div>
+          <div class="to-data" id="toData"></div>
         </div>
         <div class="filter__range-multi-range">
-          <input type="range" min="0" max="48" class="range-left-point" />
-          <input type="range" min="0" max="48" class="range-right-point" />
+          <input
+            type="range"
+            min="0"
+            max="48"
+            class="range-left-point"
+            oninput="fromData.innerText = this.value"
+          />
+          <input
+            type="range"
+            min="0"
+            max="48"
+            class="range-right-point"
+            oninput="toData.innerText = this.value"
+          />
         </div>
       </div>
     </template>
-    <app-dual-slider> </app-dual-slider>
-
     <template id="productsItemTemp">
       <div class="products__item">
         <div class="products__meta">

@@ -44,6 +44,15 @@ class App {
         this.view.drawCategories(this.controller.categories)
       )
   }
+
+  /**
+   * update
+   */
+  public update(e: HTMLElement) {
+    this.controller.getProducts(e, (data: SrcItem[]) =>
+      this.view.drawProducts(data)
+    )
+  }
 }
 
 export default App

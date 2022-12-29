@@ -12,12 +12,23 @@ export class AppView {
     this.products = new Products()
     this.categories = new Categories()
     this.filters = new Filters()
+    this.filters.viewFilter.brands = []
+    this.filters.viewFilter.minPrice = 0
+    this.filters.viewFilter.maxPrice = 0
+    this.filters.viewFilter.minRating = 0
+    this.filters.viewFilter.maxRating = 0
   }
 
   public drawProducts(data: SrcItem[]) {
-    const values: SrcItem[] = data ?? []
+    this.filters.draw(data)
+    const values: SrcItem[] =
+      data.filter((value: SrcItem) => {
+        if (this.filters.viewFilter.brands.length > 0)
+          return this.filters.viewFilter.brands.includes(value.brand)
+        else return true
+      }) ?? []
+
     this.products.draw(values)
-    this.filters.draw(values)
   }
 
   public drawCategories(values: SrcItem[] = []) {

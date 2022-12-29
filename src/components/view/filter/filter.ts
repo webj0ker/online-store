@@ -1,9 +1,41 @@
 import './filter.css'
-import {FilterParams, FilterProduct, Nullable} from '../../base/base'
+import {
+  FilterParams,
+  FilterProduct,
+  Nullable,
+  ViewFilter,
+} from '../../base/base'
 import {setElement, setElementFor} from '../../base/functions'
+import app from '../../../index'
 import {SrcItem} from '../../base/base'
 
 class Filters {
+  public viewFilter: ViewFilter = {
+    brands: [],
+    minPrice: 0,
+    minRating: 0,
+    maxPrice: 0,
+    maxRating: 0,
+  }
+  private updateURL() {
+    if (history.pushState) {
+      const baseUrl =
+        window.location.protocol +
+        '//' +
+        window.location.host +
+        window.location.pathname
+      const newUrl =
+        baseUrl +
+        `${
+          this.viewFilter.brands.length > 0
+            ? '?brand=' + this.viewFilter.brands.join(',')
+            : ''
+        }`
+      history.pushState(null, null, newUrl)
+    } else {
+      console.warn('History API не поддерживается')
+    }
+  }
   draw(data: SrcItem[]) {
     function findBrand(nameBrand: string) {
       for (const index in filterParams.brand) {
@@ -26,7 +58,11 @@ class Filters {
 
     data.forEach((item: SrcItem) => {
       if (!findBrand(item.brand)) {
-        const fp: FilterProduct = {name: item.brand, stock: item.stock}
+        const fp: FilterProduct = {
+          category: item.category,
+          name: item.brand,
+          stock: item.stock,
+        }
         filterParams.brand.push(fp)
       }
       if (filterParams.minPrice > item.price) filterParams.minPrice = item.price
@@ -52,9 +88,40 @@ class Filters {
         item.stock.toString(),
         filterClone
       )
+      if (this.viewFilter.brands.includes(item.name))
+        (
+          filterClone.querySelector<HTMLElement>('input') as HTMLInputElement
+        ).checked = true
       filterClone
-        .querySelector<HTMLElement>('checkbox')
-        ?.setAttribute('filter__item-name', `filter__item-${item.name}`)
+        .querySelector<HTMLElement>('input')
+        ?.setAttribute('id', `filter__item-${item.name}`)
+      filterClone
+        .querySelector<HTMLElement>('input')
+        ?.setAttribute('data', `${item.category}`)
+      filterClone
+        .querySelector<HTMLElement>('input')
+        .addEventListener('click', (ev: MouseEvent) => {
+          const input: Nullable<HTMLInputElement> =
+            ev.target as HTMLInputElement
+          if (input.checked)
+            this.viewFilter.brands.push(input.getAttribute('id').slice(13))
+          else {
+            const index = this.viewFilter.brands.indexOf(
+              input.getAttribute('id').slice(13)
+            )
+            this.viewFilter.brands.splice(index, 1)
+          }
+          const findCategory = input.getAttribute('data')
+          const listCategory =
+            document.querySelectorAll<HTMLElement>('.category__item')
+          listCategory.forEach((category: HTMLElement) => {
+            if (category.textContent === findCategory) {
+              app.update(category)
+              this.updateURL()
+              return
+            }
+          })
+        })
       setElementFor(
         'label',
         'htmlFor',
@@ -84,8 +151,7 @@ class Filters {
       filterClone
     )
     fragment.append(filterClone)
-    //setElement('.filter-list-range', 'innerHTML', '');
-    //document.querySelector<HTMLElement>('.filter-list-range')?.append(fragment);
+
     const filterClone2: Nullable<HTMLTemplateElement> =
       filtersSliderItemTemp?.content?.cloneNode(true) as HTMLTemplateElement
     setElement('.filter__range-caption', 'textContent', 'Rating', filterClone2)
