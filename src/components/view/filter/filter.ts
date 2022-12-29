@@ -150,6 +150,15 @@ class Filters {
       `${filterParams.maxPrice}`,
       filterClone
     )
+    const kPrice = 100 / filterParams.maxPrice
+    const slidersPrice = filterClone.querySelectorAll<HTMLElement>('input')
+    slidersPrice.forEach((value: HTMLElement) => {
+      if (value.className === 'range-left-point')
+        (value as HTMLInputElement).value = `${filterParams.minPrice * kPrice}`
+      else
+        (value as HTMLInputElement).value = `${filterParams.maxPrice * kPrice}`
+    })
+
     fragment.append(filterClone)
 
     const filterClone2: Nullable<HTMLTemplateElement> =
@@ -167,6 +176,13 @@ class Filters {
       `${filterParams.maxRating}`,
       filterClone2
     )
+
+    const slidersRating = filterClone2.querySelectorAll<HTMLElement>('input')
+    slidersRating.forEach((value: HTMLElement) => {
+      if (value.className === 'range-left-point')
+        (value as HTMLInputElement).value = `${filterParams.minRating * 20}`
+      else (value as HTMLInputElement).value = `${filterParams.maxRating * 20}`
+    })
     fragment.append(filterClone2)
     setElement('.filter-list-range', 'innerHTML', '')
     document.querySelector<HTMLElement>('.filter-list-range')?.append(fragment)
