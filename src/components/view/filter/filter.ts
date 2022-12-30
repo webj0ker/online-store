@@ -158,22 +158,38 @@ class Filters {
     setElement(
       '.from-data',
       'textContent',
-      `${filterParams.minPrice}`,
+      `${
+        this.viewFilter.minPrice > 0
+          ? this.viewFilter.minPrice
+          : filterParams.minPrice
+      }`,
       filterClone
     )
     setElement(
       '.to-data',
       'textContent',
-      `${filterParams.maxPrice}`,
+      `${
+        this.viewFilter.maxPrice > 0
+          ? this.viewFilter.maxPrice
+          : filterParams.maxPrice
+      }`,
       filterClone
     )
     const kPrice = 100 / filterParams.maxPrice
     const slidersPrice = filterClone.querySelectorAll<HTMLElement>('input')
     slidersPrice.forEach((value: HTMLElement) => {
       if (value.className === 'range-left-point')
-        (value as HTMLInputElement).value = `${filterParams.minPrice * kPrice}`
+        (value as HTMLInputElement).value = `${
+          (this.viewFilter.minPrice > 0
+            ? this.viewFilter.minPrice
+            : filterParams.minPrice) * kPrice
+        }`
       else
-        (value as HTMLInputElement).value = `${filterParams.maxPrice * kPrice}`
+        (value as HTMLInputElement).value = `${
+          (this.viewFilter.maxPrice > 0
+            ? this.viewFilter.maxPrice
+            : filterParams.maxPrice) * kPrice
+        }`
     })
 
     filterClone
@@ -224,21 +240,38 @@ class Filters {
     setElement(
       '.from-data',
       'textContent',
-      `${filterParams.minRating}`,
+      `${
+        this.viewFilter.minRating > 0
+          ? this.viewFilter.minRating
+          : filterParams.minRating
+      }`,
       filterClone2
     )
     setElement(
       '.to-data',
       'textContent',
-      `${filterParams.maxRating}`,
+      `${
+        this.viewFilter.maxRating > 0
+          ? this.viewFilter.maxRating
+          : filterParams.maxRating
+      }`,
       filterClone2
     )
 
     const slidersRating = filterClone2.querySelectorAll<HTMLElement>('input')
     slidersRating.forEach((value: HTMLElement) => {
       if (value.className === 'range-left-point')
-        (value as HTMLInputElement).value = `${filterParams.minRating * 20}`
-      else (value as HTMLInputElement).value = `${filterParams.maxRating * 20}`
+        (value as HTMLInputElement).value = `${
+          (this.viewFilter.minRating > 0
+            ? this.viewFilter.minRating
+            : filterParams.minRating) * 20
+        }`
+      else
+        (value as HTMLInputElement).value = `${
+          (this.viewFilter.maxRating > 0
+            ? this.viewFilter.maxRating
+            : filterParams.maxRating) * 20
+        }`
     })
 
     filterClone2
