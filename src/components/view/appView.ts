@@ -23,9 +23,23 @@ export class AppView {
     this.filters.draw(data)
     const values: SrcItem[] =
       data.filter((value: SrcItem) => {
+        let result = true
         if (this.filters.viewFilter.brands.length > 0)
-          return this.filters.viewFilter.brands.includes(value.brand)
-        else return true
+          result = this.filters.viewFilter.brands.includes(value.brand)
+        result =
+          result &&
+          value.price > this.filters.viewFilter.minPrice &&
+          value.price <
+            (this.filters.viewFilter.maxPrice > 0
+              ? this.filters.viewFilter.maxPrice
+              : 1000) &&
+          value.rating > this.filters.viewFilter.minRating &&
+          value.rating <
+            (this.filters.viewFilter.maxRating > 0
+              ? this.filters.viewFilter.maxRating
+              : 5)
+
+        return result
       }) ?? []
 
     this.products.draw(values)

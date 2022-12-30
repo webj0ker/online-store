@@ -65,6 +65,14 @@ class Filters {
       }
       return false
     }
+    const filterItem = document.querySelector('.filter__item')
+    if (filterItem) {
+      if (
+        filterItem.querySelector('input').getAttribute('data') ===
+        this.viewFilter.category
+      )
+        return
+    }
     const filterParams: FilterParams = {
       brand: [],
       minPrice: 100000,
@@ -160,8 +168,8 @@ class Filters {
       'textContent',
       `${
         this.viewFilter.minPrice > 0
-          ? this.viewFilter.minPrice
-          : filterParams.minPrice
+          ? this.viewFilter.minPrice.toFixed(2)
+          : filterParams.minPrice.toFixed(2)
       }`,
       filterClone
     )
@@ -170,8 +178,8 @@ class Filters {
       'textContent',
       `${
         this.viewFilter.maxPrice > 0
-          ? this.viewFilter.maxPrice
-          : filterParams.maxPrice
+          ? this.viewFilter.maxPrice.toFixed(2)
+          : filterParams.maxPrice.toFixed(2)
       }`,
       filterClone
     )
@@ -190,6 +198,7 @@ class Filters {
             ? this.viewFilter.maxPrice
             : filterParams.maxPrice) * kPrice
         }`
+      value.setAttribute('data', `${this.viewFilter.category}`)
     })
 
     filterClone
@@ -210,6 +219,17 @@ class Filters {
         this.viewFilter.minPrice =
           Number((ev.target as HTMLInputElement).value) / kPrice
         this.updateURL()
+        const findCategory = (ev.target as HTMLInputElement).getAttribute(
+          'data'
+        )
+        const listCategory =
+          document.querySelectorAll<HTMLElement>('.category__item')
+        listCategory.forEach((category: HTMLElement) => {
+          if (category.textContent === findCategory) {
+            app.update(category)
+            return
+          }
+        })
       })
 
     filterClone
@@ -230,6 +250,17 @@ class Filters {
         this.viewFilter.maxPrice =
           Number((ev.target as HTMLInputElement).value) / kPrice
         this.updateURL()
+        const findCategory = (ev.target as HTMLInputElement).getAttribute(
+          'data'
+        )
+        const listCategory =
+          document.querySelectorAll<HTMLElement>('.category__item')
+        listCategory.forEach((category: HTMLElement) => {
+          if (category.textContent === findCategory) {
+            app.update(category)
+            return
+          }
+        })
       })
 
     fragment.append(filterClone)
@@ -242,8 +273,8 @@ class Filters {
       'textContent',
       `${
         this.viewFilter.minRating > 0
-          ? this.viewFilter.minRating
-          : filterParams.minRating
+          ? this.viewFilter.minRating.toFixed(2)
+          : filterParams.minRating.toFixed(2)
       }`,
       filterClone2
     )
@@ -252,8 +283,8 @@ class Filters {
       'textContent',
       `${
         this.viewFilter.maxRating > 0
-          ? this.viewFilter.maxRating
-          : filterParams.maxRating
+          ? this.viewFilter.maxRating.toFixed(2)
+          : filterParams.maxRating.toFixed(2)
       }`,
       filterClone2
     )
@@ -272,6 +303,7 @@ class Filters {
             ? this.viewFilter.maxRating
             : filterParams.maxRating) * 20
         }`
+      value.setAttribute('data', `${this.viewFilter.category}`)
     })
 
     filterClone2
@@ -292,6 +324,17 @@ class Filters {
         this.viewFilter.minRating =
           Number((ev.target as HTMLInputElement).value) / kRating
         this.updateURL()
+        const findCategory = (ev.target as HTMLInputElement).getAttribute(
+          'data'
+        )
+        const listCategory =
+          document.querySelectorAll<HTMLElement>('.category__item')
+        listCategory.forEach((category: HTMLElement) => {
+          if (category.textContent === findCategory) {
+            app.update(category)
+            return
+          }
+        })
       })
 
     filterClone2
@@ -312,6 +355,17 @@ class Filters {
         this.viewFilter.maxRating =
           Number((ev.target as HTMLInputElement).value) / kRating
         this.updateURL()
+        const findCategory = (ev.target as HTMLInputElement).getAttribute(
+          'data'
+        )
+        const listCategory =
+          document.querySelectorAll<HTMLElement>('.category__item')
+        listCategory.forEach((category: HTMLElement) => {
+          if (category.textContent === findCategory) {
+            app.update(category)
+            return
+          }
+        })
       })
 
     fragment.append(filterClone2)
