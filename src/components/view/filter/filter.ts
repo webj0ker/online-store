@@ -11,26 +11,48 @@ import {SrcItem} from '../../base/base'
 
 class Filters {
   public viewFilter: ViewFilter = {
+    category: '',
     brands: [],
     minPrice: 0,
     minRating: 0,
     maxPrice: 0,
     maxRating: 0,
   }
-  private updateURL() {
+  public updateURL() {
     if (history.pushState) {
       const baseUrl =
         window.location.protocol +
         '//' +
         window.location.host +
         window.location.pathname
-      const newUrl =
-        baseUrl +
-        `${
-          this.viewFilter.brands.length > 0
-            ? '?brand=' + this.viewFilter.brands.join(',')
-            : ''
-        }`
+      const categoryUrl = `${
+        this.viewFilter.category.length > 0
+          ? '?category=' + this.viewFilter.category
+          : ''
+      }`
+      const brandUrl = `${
+        this.viewFilter.brands.length > 0
+          ? '?brand=' + this.viewFilter.brands.join(',')
+          : ''
+      }`
+      const priceUrl = `${
+        this.viewFilter.minPrice !== 0
+          ? '?price=' +
+            this.viewFilter.minPrice.toFixed(2) +
+            ',' +
+            this.viewFilter.maxPrice.toFixed(2)
+          : ''
+      }`
+      const ratingUrl = `${
+        this.viewFilter.minRating !== 0
+          ? '?rating=' +
+            this.viewFilter.minRating.toFixed(2) +
+            ',' +
+            this.viewFilter.maxRating.toFixed(2)
+          : ''
+      }`
+      const newUrl = baseUrl + categoryUrl + brandUrl + priceUrl + ratingUrl
+
       history.pushState(null, null, newUrl)
     } else {
       console.warn('History API не поддерживается')
@@ -50,11 +72,6 @@ class Filters {
       maxPrice: 0,
       maxRating: 0,
     }
-    // filterParams.brand = [];
-    // filterParams.minPrice = 100000;
-    // filterParams.minRating = 100000;
-    // filterParams.maxPrice = 0;
-    // filterParams.maxRating = 0;
 
     data.forEach((item: SrcItem) => {
       if (!findBrand(item.brand)) {
@@ -159,6 +176,46 @@ class Filters {
         (value as HTMLInputElement).value = `${filterParams.maxPrice * kPrice}`
     })
 
+    filterClone
+      .querySelector<HTMLElement>('input')
+      .addEventListener('input', (ev: Event) => {
+        const divParent = (ev.target as HTMLElement).parentElement.parentElement
+        const fromData = divParent.querySelector('.from-data')
+        const toData = divParent.querySelector('.to-data')
+        const kPrice = 100 / filterParams.maxPrice
+        if ((ev.target as HTMLElement).className === 'range-left-point')
+          fromData.textContent = (
+            Number((ev.target as HTMLInputElement).value) / kPrice
+          ).toFixed(2)
+        else
+          toData.textContent = (
+            Number((ev.target as HTMLInputElement).value) / kPrice
+          ).toFixed(2)
+        this.viewFilter.minPrice =
+          Number((ev.target as HTMLInputElement).value) / kPrice
+        this.updateURL()
+      })
+
+    filterClone
+      .querySelector<HTMLElement>('.range-right-point')
+      .addEventListener('input', (ev: Event) => {
+        const divParent = (ev.target as HTMLElement).parentElement.parentElement
+        const fromData = divParent.querySelector('.from-data')
+        const toData = divParent.querySelector('.to-data')
+        const kPrice = 100 / filterParams.maxPrice
+        if ((ev.target as HTMLElement).className === 'range-left-point')
+          fromData.textContent = (
+            Number((ev.target as HTMLInputElement).value) / kPrice
+          ).toFixed(2)
+        else
+          toData.textContent = (
+            Number((ev.target as HTMLInputElement).value) / kPrice
+          ).toFixed(2)
+        this.viewFilter.maxPrice =
+          Number((ev.target as HTMLInputElement).value) / kPrice
+        this.updateURL()
+      })
+
     fragment.append(filterClone)
 
     const filterClone2: Nullable<HTMLTemplateElement> =
@@ -183,6 +240,47 @@ class Filters {
         (value as HTMLInputElement).value = `${filterParams.minRating * 20}`
       else (value as HTMLInputElement).value = `${filterParams.maxRating * 20}`
     })
+
+    filterClone2
+      .querySelector<HTMLElement>('input')
+      .addEventListener('input', (ev: Event) => {
+        const divParent = (ev.target as HTMLElement).parentElement.parentElement
+        const fromData = divParent.querySelector('.from-data')
+        const toData = divParent.querySelector('.to-data')
+        const kRating = 100 / 5
+        if ((ev.target as HTMLElement).className === 'range-left-point')
+          fromData.textContent = (
+            Number((ev.target as HTMLInputElement).value) / kRating
+          ).toFixed(2)
+        else
+          toData.textContent = (
+            Number((ev.target as HTMLInputElement).value) / kRating
+          ).toFixed(2)
+        this.viewFilter.minRating =
+          Number((ev.target as HTMLInputElement).value) / kRating
+        this.updateURL()
+      })
+
+    filterClone2
+      .querySelector<HTMLElement>('.range-right-point')
+      .addEventListener('input', (ev: Event) => {
+        const divParent = (ev.target as HTMLElement).parentElement.parentElement
+        const fromData = divParent.querySelector('.from-data')
+        const toData = divParent.querySelector('.to-data')
+        const kRating = 100 / 5
+        if ((ev.target as HTMLElement).className === 'range-left-point')
+          fromData.textContent = (
+            Number((ev.target as HTMLInputElement).value) / kRating
+          ).toFixed(2)
+        else
+          toData.textContent = (
+            Number((ev.target as HTMLInputElement).value) / kRating
+          ).toFixed(2)
+        this.viewFilter.maxRating =
+          Number((ev.target as HTMLInputElement).value) / kRating
+        this.updateURL()
+      })
+
     fragment.append(filterClone2)
     setElement('.filter-list-range', 'innerHTML', '')
     document.querySelector<HTMLElement>('.filter-list-range')?.append(fragment)

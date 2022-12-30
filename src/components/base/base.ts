@@ -8,6 +8,7 @@ export interface Config<SrcItem> {
 }
 
 export interface ViewFilter {
+  category: string
   brands: string[]
   minRating: number
   maxRating: number

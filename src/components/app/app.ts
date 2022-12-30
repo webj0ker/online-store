@@ -17,15 +17,34 @@ class App {
     )
   }
 
+  private parseUrl() {
+    function getCurrentURL() {
+      return window.location.href
+    }
+    const url = getCurrentURL()
+    const filterUrl = url.split('?')
+    filterUrl.forEach((value: string) => console.log(value))
+  }
+
   public start() {
+    this.parseUrl()
     const filterInput: Nullable<HTMLInputElement> =
       document.querySelector('.filter__input')
     document
       ?.querySelector('.categories')
       ?.addEventListener('click', (e: Event) =>
-        this.controller.getProducts(e, (data: SrcItem[]) =>
+        this.controller.getProducts(e, (data: SrcItem[]) => {
+          this.view.filters.viewFilter.category = (
+            e.target as HTMLElement
+          ).textContent
+          this.view.filters.viewFilter.brands = []
+          this.view.filters.viewFilter.minPrice = 0
+          this.view.filters.viewFilter.maxPrice = 0
+          this.view.filters.viewFilter.minRating = 0
+          this.view.filters.viewFilter.maxRating = 0
           this.view.drawProducts(data)
-        )
+          this.view.filters.updateURL()
+        })
       )
     this.controller.getCategories((data: SrcItem[]) =>
       this.view.drawCategories(data)
