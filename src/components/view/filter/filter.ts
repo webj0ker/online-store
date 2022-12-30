@@ -97,7 +97,7 @@ class Filters {
       if (filterParams.maxRating < item.rating)
         filterParams.maxRating = item.rating
     })
-    const filters: SrcItem[] = data
+    // const filters: SrcItem[] = data
     const fragment: DocumentFragment = document.createDocumentFragment()
     const filtersItemTemp: Nullable<HTMLTemplateElement> =
       document.querySelector<HTMLTemplateElement>('#filterItemTemp')
