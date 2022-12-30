@@ -28,6 +28,14 @@
       <div class="wrapper">
         <div class="categories buttons">
           <div class="categories__wrapper"></div>
+          <div class="filters__wrapper">
+            <div class="filter-option">
+              <div class="filter-list-brand"></div>
+            </div>
+            <div class="filter-option">
+              <div class="filter-list-range"></div>
+            </div>
+          </div>
         </div>
         <div class="products"></div>
       </div>
@@ -56,6 +64,29 @@
       </div>
     </template>
 
+    <template id="filterItemTemp">
+      <div class="filter__item">
+        <input type="checkbox" id="filter__item-name" />
+        <label for="filter__item-name"></label>
+        <span class="filter__item-count"></span>
+      </div>
+    </template>
+
+    <template id="filterSliderItemTemp">
+      <div class="filter__range">
+        <h3 class="filter__range-caption"></h3>
+        <div class="filter__range-out-data">
+          <div class="from-data" id="fromData"></div>
+          <!---->
+          ⟷
+          <div class="to-data" id="toData"></div>
+        </div>
+        <div class="filter__range-multi-range">
+          <input type="range" min="0" max="100" class="range-left-point" />
+          <input type="range" min="0" max="100" class="range-right-point" />
+        </div>
+      </div>
+    </template>
     <template id="productsItemTemp">
       <div class="products__item">
         <div class="products__meta">
