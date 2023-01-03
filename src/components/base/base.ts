@@ -7,7 +7,17 @@ export interface Config<SrcItem> {
   options?: Options
 }
 
+export interface ViewFilter {
+  category: string
+  brands: string[]
+  minRating: number
+  maxRating: number
+  minPrice: number
+  maxPrice: number
+}
+
 export interface FilterProduct {
+  category: string
   name: string
   stock: number
 }

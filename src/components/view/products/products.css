@@ -1,7 +1,15 @@
 .products {
   display: flex;
+}
+
+.grid-view {
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.list-view {
+  flex-direction: column;
+  justify-content: none;
 }
 
 .products__item {

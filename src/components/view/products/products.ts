@@ -4,12 +4,11 @@ import {setElement} from '../../base/functions'
 
 class Products {
   draw(data: SrcItem[]) {
-    const products: SrcItem[] = data
     const fragment: DocumentFragment = document.createDocumentFragment()
     const productsItemTemp: Nullable<HTMLTemplateElement> =
       document.querySelector<HTMLTemplateElement>('#productsItemTemp')
 
-    products.forEach((item: SrcItem, index: number) => {
+    data.forEach((item: SrcItem, index: number) => {
       const productsClone: Nullable<HTMLTemplateElement> =
         productsItemTemp?.content?.cloneNode(true) as HTMLTemplateElement
       const productsMetaPhoto: Nullable<HTMLElement> =
