@@ -102,13 +102,6 @@ input[type='range']::-webkit-slider-thumb:before {
   background-color: gray;
 }
 
-.sorting {
-  /* margin-bottom: 20px;
-  border-top: 1px solid #f0f0f0;
-  border-bottom: 1px solid #f0f0f0;
-  padding: 10px 0; */
-}
-
 .row {
   margin-right: -15px;
   margin-left: -15px;
