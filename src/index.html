@@ -12,42 +12,57 @@
     <header class="header">
       <div class="header__wrapper wrapper">
         <h1>Online store</h1>
-        <form class="filter">
-          <label>
-            <input
-              class="filter__input"
-              type="text"
-              placeholder="Search"
-              minlength="2"
-            />
-          </label>
-          <button class="filter__button" type="reset">Сlear</button>
-        </form>
+
+        <div class="cart">
+          <ul id="site-header-cart" class="site-header-cart menu">
+            <li class="focus">
+              <a
+                class="cart-contents_"
+                href="/cart/"
+                title="Посмотреть вашу корзину"
+              >
+                <span class="icon">
+                  <img src="../src/assets/cart-icon.svg" alt="cart" />
+                  <span class="count">0</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
         <div class="sorting top" id="sorting">
+          <form class="filter">
+            <label>
+              <input
+                class="filter__input"
+                type="text"
+                placeholder="Search"
+                minlength="2"
+              />
+            </label>
+            <button class="filter__button" type="reset">Сlear</button>
+          </form>
           <div class="row">
-            <div class="col-md-3 col-sm-6 hidden-xs">
-              <div class="btn-group btn-group-sm">
-                <button
-                  type="button"
-                  id="list-view"
-                  class="btn btn-default list-view"
-                  data-toggle="tooltip"
-                  title=""
-                  data-original-title="Список"
-                >
-                  <i class="fa fa-th-list"></i>
-                </button>
-                <button
-                  type="button"
-                  id="grid-view"
-                  class="btn btn-default grid-view active"
-                  data-toggle="tooltip"
-                  title=""
-                  data-original-title="Сетка"
-                >
-                  <i class="fa fa-th"></i>
-                </button>
-              </div>
+            <div class="btn-group btn-group-sm">
+              <button
+                type="button"
+                id="list-view"
+                class="btn btn-default list-view"
+                data-toggle="tooltip"
+                title=""
+                data-original-title="Список"
+              >
+                <i class="fa fa-th-list"></i>
+              </button>
+              <button
+                type="button"
+                id="grid-view"
+                class="btn btn-default grid-view active"
+                data-toggle="tooltip"
+                title=""
+                data-original-title="Сетка"
+              >
+                <i class="fa fa-th"></i>
+              </button>
             </div>
             <div class="form-group input-group input-group-sm">
               <label class="input-group-addon" for="input-sort"
@@ -136,13 +151,22 @@
           </ul>
         </div>
         <div class="products__description">
-          <h2 class="products__description-title"></h2>
-          <h3 class="products__description-price"></h3>
-          <h3 class="products__description-rating"></h3>
-          <p class="products__description-content"></p>
-          <p class="products__read-more">
-            <a href="#">Read More</a>
-          </p>
+          <div class="products__data">
+            <h2 class="products__description-title"></h2>
+            <h3 class="products__description-price"></h3>
+            <h3 class="products__description-rating"></h3>
+            <p class="products__description-content"></p>
+          </div>
+          <div class="products__details">
+            <p class="products__read-more">
+              <a href="#">Read More</a>
+            </p>
+            <ul class="product__buttons">
+              <li>
+                <a class="main" href="">Купить</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </template>

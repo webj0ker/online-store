@@ -115,6 +115,34 @@
   margin: 1rem 0 0;
 }
 
+.products__item .products__details {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+ul.product__buttons {
+  margin: 0;
+  list-style: none;
+}
+
+ul.product__buttons li a {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 35px;
+  color: #fff;
+  background: #638ad379;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+.products__item:hover ul.product__buttons li a:hover {
+  background: #2d4c8679;
+}
+
 .products__item p:first-of-type {
   margin-top: 1.25rem;
   position: relative;
