@@ -61,7 +61,7 @@ class Products {
       )
       productsClone
         .querySelector<HTMLElement>('.products__read-more a')
-        ?.setAttribute('href', item.images[0])
+        ?.setAttribute('id', item.id)
       fragment.append(productsClone)
     })
     setElement('.products', 'innerHTML', '')

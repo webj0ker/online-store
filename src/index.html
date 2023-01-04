@@ -93,6 +93,19 @@
         </div>
         <div class="products grid-view"></div>
       </div>
+      <div id="openModal" class="modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">Название</h3>
+              <a href="#close" title="Close" class="close">×</a>
+            </div>
+            <div class="modal-body">
+              <p>Содержимое модального окна...</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <footer class="footer">
       <div class="footer__wrapper wrapper">
@@ -143,6 +156,35 @@
     </template>
     <template id="productsItemTemp">
       <div class="products__item">
+        <div class="products__meta">
+          <div class="products__meta-photo"></div>
+          <ul class="products__meta-details">
+            <li class="products__meta-brand"></li>
+            <li class="products__meta-date"></li>
+          </ul>
+        </div>
+        <div class="products__description">
+          <div class="products__data">
+            <h2 class="products__description-title"></h2>
+            <h3 class="products__description-price"></h3>
+            <h3 class="products__description-rating"></h3>
+            <p class="products__description-content"></p>
+          </div>
+          <div class="products__details">
+            <p class="products__read-more">
+              <a href="#openModal">Read More</a>
+            </p>
+            <ul class="product__buttons">
+              <li>
+                <a class="main" href="">Купить</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </template>
+    <template id="productTemp">
+      <div class="product__item">
         <div class="products__meta">
           <div class="products__meta-photo"></div>
           <ul class="products__meta-details">

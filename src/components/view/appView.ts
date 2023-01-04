@@ -2,6 +2,7 @@ import Products from './products/products'
 import Categories from './categories/categories'
 import Filters from './filter/filter'
 import {SrcItem} from '../base/base'
+import viewModal from './modal/modal'
 
 export class AppView {
   public products: Products
@@ -74,6 +75,7 @@ export class AppView {
       if (sortControl.selectedIndex === 3) return b.rating - a.rating
     })
     this.products.draw(values)
+    viewModal()
   }
 
   public drawCategories(values: SrcItem[] = []) {
