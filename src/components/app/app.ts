@@ -11,6 +11,10 @@ class App {
     this.view = new AppView()
   }
 
+  public get products(): SrcItem[] {
+    return this.controller.products
+  }
+
   public filterCategories(value: string): SrcItem[] {
     return this.controller.categories.filter((item: SrcItem) =>
       item.category.toLowerCase().includes(value.toLowerCase())
@@ -110,6 +114,7 @@ class App {
    */
   public update(e: HTMLElement) {
     this.controller.getProducts(e, (data: SrcItem[]) => {
+      this.controller.products = data
       this.view.drawProducts(data)
       this.view.filters.updateURL()
     })

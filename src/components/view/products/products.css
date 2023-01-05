@@ -44,6 +44,11 @@
   transition: transform 0.2s;
 }
 
+.products__meta-photo img {
+  width: 200px;
+  height: 200px;
+}
+
 .products__item .products__meta-details,
 .products__item .products__meta-details ul {
   margin: auto;

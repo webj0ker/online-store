@@ -100,9 +100,7 @@
               <h3 class="modal-title">Название</h3>
               <a href="#close" title="Close" class="close">×</a>
             </div>
-            <div class="modal-body">
-              <p>Содержимое модального окна...</p>
-            </div>
+            <div class="modal-body"></div>
           </div>
         </div>
       </div>
@@ -185,12 +183,19 @@
     </template>
     <template id="productTemp">
       <div class="product__item">
-        <div class="products__meta">
-          <div class="products__meta-photo"></div>
-          <ul class="products__meta-details">
-            <li class="products__meta-brand"></li>
-            <li class="products__meta-date"></li>
-          </ul>
+        <div class="slider">
+          <div class="images">
+            <!-- <img src=""> -->
+          </div>
+          <div class="btm-slides">
+            <!-- <span onclick=""></span> -->
+          </div>
+          <div class="sliders left" id="-1">
+            <span class="fa fa-angle-left"></span>
+          </div>
+          <div class="sliders right" id="1">
+            <span class="fa fa-angle-right"></span>
+          </div>
         </div>
         <div class="products__description">
           <div class="products__data">
@@ -200,9 +205,6 @@
             <p class="products__description-content"></p>
           </div>
           <div class="products__details">
-            <p class="products__read-more">
-              <a href="#">Read More</a>
-            </p>
             <ul class="product__buttons">
               <li>
                 <a class="main" href="">Купить</a>

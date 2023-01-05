@@ -27,9 +27,9 @@
   width: auto;
   margin: 10px;
 }
-@media (min-width: 576px) {
+@media (min-width: 676px) {
   .modal-dialog {
-    max-width: 500px;
+    max-width: 780px;
     margin: 30px auto; /* для отображения модального окна по центру */
   }
 }
@@ -45,7 +45,7 @@
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  background-color: #fff;
+  background-color: #1a1e2a;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
