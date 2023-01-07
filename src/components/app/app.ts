@@ -93,6 +93,12 @@ class App {
       )
   }
 
+  public getData(url: string): SrcItem {
+    return this.controller.getProduct(url, (data: SrcItem[]) => {
+      return data
+    })
+  }
+
   /**
    * update
    */

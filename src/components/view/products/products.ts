@@ -63,7 +63,7 @@ class Products {
       productsClone
         .querySelector<HTMLElement>('.products__read-more a')
         // ?.setAttribute('href', item.images[0])
-        ?.setAttribute('href', `product/${item.title.split(' ').join('')}`)
+        ?.setAttribute('href', `/#${item.id}`)
       fragment.append(productsClone)
     })
     setElement('.products', 'innerHTML', '')

@@ -13,6 +13,23 @@ class AppController extends AppLoader {
     })
   }
 
+  public getProduct(
+    url: string,
+    callback: (data: SrcItem[]) => void
+  ): SrcItem | any {
+    //eslint-disable-line
+    super.getProductDetails({
+      options: {
+        sources: 'product',
+        id: url,
+      },
+      callback: (data: SrcItem[]) => {
+        // debugger // eslint-disable-line no-debugger
+        callback(data)
+      },
+    })
+  }
+
   public getProducts(
     e: Event | HTMLElement,
     callback: (data: SrcItem[]) => void

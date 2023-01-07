@@ -2,11 +2,13 @@ import './product-page.css'
 import {SrcItem} from '../../base/base'
 import {BaseComponent} from '../../base-component'
 
-export class ProductPage extends BaseComponent {
-  constructor(readonly data: SrcItem, url: string) {
-    super('div', ['wrapper'])
+class ProductPage extends BaseComponent {
+  constructor(data: SrcItem) {
+    super('div', ['main'])
     this.element.innerHTML = `
-        <h1>${data.title}</h1>
+        <h1>${data.brand}</h1>
     `
   }
 }
+
+export default ProductPage
