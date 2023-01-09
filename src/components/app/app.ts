@@ -1,7 +1,8 @@
 import AppController from '../controller/controller'
 import {AppView} from '../view/appView'
 import {Nullable, SrcItem} from '../base/base'
-
+import cart_initialize from '../view/cart/cart'
+//import initialize from '../view/order/order'
 class App {
   public controller: AppController
   public view: AppView
@@ -11,9 +12,28 @@ class App {
     this.view = new AppView()
   }
 
+  public get products(): SrcItem[] {
+    return this.controller.products
+  }
+
+  public get cartProducts(): SrcItem[] {
+    return this.controller.cartProducts
+  }
+  public set addProduct(value: SrcItem) {
+    this.controller.cartProducts.push(value)
+  }
+  public set delProduct(value: SrcItem) {
+    const index = this.controller.cartProducts.indexOf(value)
+    this.controller.cartProducts.splice(index, 1)
+  }
   public filterCategories(value: string): SrcItem[] {
     return this.controller.categories.filter((item: SrcItem) =>
       item.category.toLowerCase().includes(value.toLowerCase())
+    )
+  }
+  public filterProducts(value: string): SrcItem[] {
+    return this.controller.products.filter((item: SrcItem) =>
+      item.title.toLowerCase().includes(value.toLowerCase())
     )
   }
 
@@ -23,25 +43,31 @@ class App {
     }
     const url = getCurrentURL()
     const filterUrl = url.split('?')
-    filterUrl.forEach((value: string) => console.log(value))
-    this.view.filters.viewFilter.category = filterUrl[1]
-      ? filterUrl[1]?.slice(9)
-      : ''
-    this.view.filters.viewFilter.brands = filterUrl[2]
-      ? filterUrl[2]?.slice(6).split(',')
-      : []
-    this.view.filters.viewFilter.minPrice = filterUrl[3]
-      ? Number(filterUrl[3]?.slice(6).split(',')[0])
-      : 0
-    this.view.filters.viewFilter.maxPrice = filterUrl[3]
-      ? Number(filterUrl[3]?.slice(6).split(',')[1])
-      : 0
-    this.view.filters.viewFilter.minRating = filterUrl[4]
-      ? Number(filterUrl[4]?.slice(7).split(',')[0])
-      : 0
-    this.view.filters.viewFilter.maxRating = filterUrl[4]
-      ? Number(filterUrl[4]?.slice(7).split(',')[1])
-      : 0
+    filterUrl.forEach((value: string) => {
+      console.log(value)
+      if (value.indexOf('category=') !== -1)
+        this.view.filters.viewFilter.category = value ? value.slice(9) : ''
+      if (value.indexOf('brands=') !== -1)
+        this.view.filters.viewFilter.brands = value
+          ? value.slice(6).split(',')
+          : []
+      if (value.indexOf('price=') !== -1) {
+        this.view.filters.viewFilter.minPrice = value
+          ? Number(value.slice(6).split(',')[0])
+          : 0
+        this.view.filters.viewFilter.maxPrice = value
+          ? Number(value.slice(6).split(',')[1])
+          : 0
+      }
+      if (value.indexOf('rating=') !== -1) {
+        this.view.filters.viewFilter.minRating = value
+          ? Number(value.slice(7).split(',')[0])
+          : 0
+        this.view.filters.viewFilter.maxRating = value
+          ? Number(value.slice(7).split(',')[1])
+          : 0
+      }
+    })
 
     const findCategory = this.view.filters.viewFilter.category
     const listCategory =
@@ -64,11 +90,18 @@ class App {
           this.view.filters.viewFilter.category = (
             e.target as HTMLElement
           ).textContent
+          document
+            .querySelector<HTMLElement>('.products')
+            ?.style.setProperty('display', 'flex')
+          document
+            .querySelector<HTMLElement>('.cart-container')
+            ?.style.setProperty('display', 'none')
           this.view.filters.viewFilter.brands = []
           this.view.filters.viewFilter.minPrice = 0
           this.view.filters.viewFilter.maxPrice = 0
           this.view.filters.viewFilter.minRating = 0
           this.view.filters.viewFilter.maxRating = 0
+          this.controller.products = data
           this.view.drawProducts(data)
           this.view.filters.updateURL()
         })
@@ -82,24 +115,28 @@ class App {
       const input: Nullable<HTMLInputElement> = e.target as HTMLInputElement
       const sources: SrcItem[] =
         input.value.length > 1
-          ? this.filterCategories(input.value)
-          : this.controller.categories
-      this.view.drawCategories(sources)
+          ? this.filterProducts(input.value)
+          : this.controller.products
+      this.view.drawProducts(sources)
     })
     document
       ?.querySelector<HTMLElement>('.filter__button')
       ?.addEventListener('click', () =>
         this.view.drawCategories(this.controller.categories)
       )
+    //initialize()
+    cart_initialize()
   }
 
   /**
    * update
    */
   public update(e: HTMLElement) {
-    this.controller.getProducts(e, (data: SrcItem[]) =>
+    this.controller.getProducts(e, (data: SrcItem[]) => {
+      this.controller.products = data
       this.view.drawProducts(data)
-    )
+      this.view.filters.updateURL()
+    })
   }
 }
 

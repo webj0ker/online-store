@@ -3,7 +3,8 @@ import {SrcItem} from '../base/base'
 
 class AppController extends AppLoader {
   public categories: SrcItem[] = []
-
+  public products: SrcItem[] = []
+  public cartProducts: SrcItem[] = []
   public getCategories(callback: (data: SrcItem[]) => void): void {
     super.getResp({
       callback: (data: SrcItem[]) => {

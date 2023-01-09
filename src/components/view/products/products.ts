@@ -1,15 +1,18 @@
 import './products.css'
+import '../cart/cart.css'
+import '../order/order.css'
+
 import {SrcItem, Nullable} from '../../base/base'
 import {setElement} from '../../base/functions'
+import app from '../../..'
 
 class Products {
   draw(data: SrcItem[]) {
-    const products: SrcItem[] = data
     const fragment: DocumentFragment = document.createDocumentFragment()
     const productsItemTemp: Nullable<HTMLTemplateElement> =
       document.querySelector<HTMLTemplateElement>('#productsItemTemp')
-
-    products.forEach((item: SrcItem, index: number) => {
+    const cartProducts = app.cartProducts
+    data.forEach((item: SrcItem, index: number) => {
       const productsClone: Nullable<HTMLTemplateElement> =
         productsItemTemp?.content?.cloneNode(true) as HTMLTemplateElement
       const productsMetaPhoto: Nullable<HTMLElement> =
@@ -62,7 +65,43 @@ class Products {
       )
       productsClone
         .querySelector<HTMLElement>('.products__read-more a')
-        ?.setAttribute('href', item.images[0])
+        ?.setAttribute('id', item.id)
+      productsClone
+        .querySelector<HTMLElement>('.product__buttons .btn_cart')
+        ?.setAttribute('id', item.id)
+      productsClone
+        .querySelector<HTMLElement>('.product__buttons .btn_cart')
+        .addEventListener('click', (e) => {
+          const btn_cart = e.target as HTMLElement
+          const productId = parseInt((e.target as HTMLElement).id)
+          const products = app.products
+          for (let index = 0; index < products.length; index++) {
+            const element = products[index]
+            if (parseInt(element.id) === productId) {
+              const countSpan =
+                document.querySelector<HTMLElement>('.icon .count')
+              const countIntoCart = countSpan.innerText
+              if (btn_cart.classList.contains('active')) {
+                countSpan.innerText = `${parseInt(countIntoCart) - 1}`
+                app.delProduct = element
+              } else {
+                countSpan.innerText = `${parseInt(countIntoCart) + 1}`
+                app.addProduct = element
+              }
+              btn_cart.classList.toggle('active')
+              return
+            }
+          }
+        })
+      for (let index = 0; index < cartProducts.length; index++) {
+        const element = cartProducts[index]
+        if (element.id === item.id) {
+          productsClone
+            .querySelector<HTMLElement>('.product__buttons .btn_cart')
+            .classList.toggle('active')
+          break
+        }
+      }
       fragment.append(productsClone)
     })
     setElement('.products', 'innerHTML', '')

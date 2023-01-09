@@ -36,7 +36,7 @@ class Filters {
           : ''
       }`
       const priceUrl = `${
-        this.viewFilter.minPrice !== 0
+        this.viewFilter.minPrice !== 0 || this.viewFilter.maxPrice !== 0
           ? '?price=' +
             this.viewFilter.minPrice.toFixed(2) +
             ',' +
@@ -44,7 +44,7 @@ class Filters {
           : ''
       }`
       const ratingUrl = `${
-        this.viewFilter.minRating !== 0
+        this.viewFilter.minRating !== 0 || this.viewFilter.maxRating !== 0
           ? '?rating=' +
             this.viewFilter.minRating.toFixed(2) +
             ',' +
@@ -52,12 +52,66 @@ class Filters {
           : ''
       }`
       const newUrl = baseUrl + categoryUrl + brandUrl + priceUrl + ratingUrl
-
+      const currentURL = window.location.href
       history.pushState(null, null, newUrl)
+
+      if (currentURL.indexOf('?sort=price&amp;order=ASC') !== -1)
+        this.updateComboBox(newUrl, '?sort=price&amp;order=ASC')
+      else if (currentURL.indexOf('?sort=price&amp;order=DESC') !== -1)
+        this.updateComboBox(newUrl, '?sort=price&amp;order=DESC')
+      else if (currentURL.indexOf('?sort=rating&amp;order=ASC') !== -1)
+        this.updateComboBox(newUrl, '?sort=rating&amp;order=ASC')
+      else if (currentURL.indexOf('?sort=rating&amp;order=DESC') !== -1)
+        this.updateComboBox(newUrl, '?sort=rating&amp;order=DESC')
+      else this.updateComboBox(newUrl, '')
     } else {
       console.warn('History API не поддерживается')
     }
   }
+  private updateComboBox(strURL: string, sort: string) {
+    function removeOptions(selectElement: HTMLSelectElement) {
+      const L = selectElement.options.length
+      let i = selectElement.options.length - 1
+      for (i = L; i >= 0; i--) {
+        selectElement.remove(i)
+      }
+    }
+    function addOptions(
+      selectElement: HTMLSelectElement,
+      value: string,
+      text: string
+    ) {
+      const option = document.createElement('option')
+      option.value = strURL + value
+      option.text = text
+      selectElement.options.add(option)
+    }
+    const comboBox = document.querySelector(
+      '.form-control'
+    ) as HTMLSelectElement
+    removeOptions(comboBox)
+    addOptions(comboBox, '?sort=price&amp;order=ASC', 'По цене (возрастанию)')
+    addOptions(comboBox, '?sort=price&amp;order=DESC', 'По цене (убыванию)')
+    addOptions(
+      comboBox,
+      '?sort=rating&amp;order=ASC',
+      'По рейтингу (возрастанию)'
+    )
+    addOptions(
+      comboBox,
+      '?sort=rating&amp;order=DESC',
+      'По рейтингу (убыванию)'
+    )
+    for (let index = 0; index < comboBox.options.length; index++) {
+      const element = comboBox.options[index]
+      if (element.value.indexOf(sort) !== -1) {
+        comboBox.selectedIndex = index
+        history.pushState(null, null, element.value)
+        return
+      }
+    }
+  }
+
   draw(data: SrcItem[]) {
     function findBrand(nameBrand: string) {
       for (const index in filterParams.brand) {
@@ -97,7 +151,6 @@ class Filters {
       if (filterParams.maxRating < item.rating)
         filterParams.maxRating = item.rating
     })
-    const filters: SrcItem[] = data
     const fragment: DocumentFragment = document.createDocumentFragment()
     const filtersItemTemp: Nullable<HTMLTemplateElement> =
       document.querySelector<HTMLTemplateElement>('#filterItemTemp')

@@ -34,8 +34,56 @@ html {
   align-items: center;
 }
 
+.site-header-cart {
+  list-style-type: none;
+  margin-left: 0;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.header__wrapper .cart-body ul li.focus {
+  padding: 6px 6px 4px;
+  /* background: #b68c33; */
+  border-radius: 50%;
+}
+
+ul li a {
+  color: #333333;
+}
+
+a {
+  color: #3d7b80;
+}
+
+a {
+  color: #2c2d33;
+  text-decoration: none;
+}
+
+a {
+  background-color: transparent;
+}
+
+.cart-body ul li.focus .icon .count {
+  position: relative;
+  /* left: 15px; */
+  top: -20px;
+  width: auto;
+  padding: 0 5px;
+  background: #fff;
+  border-radius: 10px;
+  color: #000;
+  font-size: 14px;
+  line-height: 1.2em;
+  text-align: center;
+}
+
 .main {
   flex: 1 0 auto;
+}
+
+.categories {
+  margin-top: 10px;
 }
 
 .footer__wrapper {
