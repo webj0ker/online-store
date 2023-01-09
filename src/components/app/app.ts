@@ -1,6 +1,7 @@
 import AppController from '../controller/controller'
 import {AppView} from '../view/appView'
 import {Nullable, SrcItem} from '../base/base'
+import initialize from '../view/order/order'
 
 class App {
   public controller: AppController
@@ -107,6 +108,7 @@ class App {
       ?.addEventListener('click', () =>
         this.view.drawCategories(this.controller.categories)
       )
+    initialize()
   }
 
   /**

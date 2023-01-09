@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="29px" height="18px" viewBox="0 0 29 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>3D799EAE-340B-457C-B679-DA3223DE22D4</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logos" transform="translate(-207.000000, -251.000000)">
+            <g id="payment-systems-logos" transform="translate(140.000000, 100.000000)">
+                <g id="logos" transform="translate(0.000000, 110.000000)">
+                    <g id="Logos-/-PS-/-ps-maestro" transform="translate(58.000000, 40.000000)">
+                        <rect id="container" x="0" y="0" width="38" height="20"></rect>
+                        <g id="maestro" stroke-width="1" fill-rule="evenodd" transform="translate(9.000000, 1.000000)">
+                            <polygon id="Shape" fill="#6C6BBD" fill-rule="nonzero" points="18.4088442 15.997882 10.5723323 15.997882 10.5723323 1.91470998 18.4088442 1.91470998"></polygon>
+                            <path d="M11.0697418,8.95658297 C11.0697418,11.8134192 12.4073356,14.3582072 14.4903149,15.998169 C12.9670865,17.197391 11.0446868,17.9131661 8.95544383,17.9131661 C4.00936454,17.9131661 -4.3759579e-07,13.9032316 -4.3759579e-07,8.95658297 C-4.3759579e-07,4.00993429 4.00936454,-1.13207547e-07 8.95544383,-1.13207547e-07 C11.0446868,-1.13207547e-07 12.9670865,0.715774889 14.4903149,1.91499696 C12.4073356,3.55495877 11.0697418,6.09974676 11.0697418,8.95658297" id="Shape" fill="#D32011" fill-rule="nonzero" transform="translate(7.245157, 8.956583) scale(-1, 1) rotate(-180.000000) translate(-7.245157, -8.956583) "></path>
+                            <path d="M28.9811314,8.95658297 C28.9811314,4.00993429 24.9717663,-1.13207547e-07 20.0256872,-1.13207547e-07 C17.9364442,-1.13207547e-07 16.0140444,0.715774889 14.4902466,1.91499696 C16.5737954,3.55495877 17.9113892,6.09974676 17.9113892,8.95658297 C17.9113892,11.8134192 16.5737954,14.3582072 14.4902466,15.998169 C16.0140444,17.197391 17.9364442,17.9131661 20.0256872,17.9131661 C24.9717663,17.9131661 28.9811314,13.9032316 28.9811314,8.95658297" id="Shape" fill="#0099DF" fill-rule="nonzero" transform="translate(21.735689, 8.956583) scale(-1, 1) rotate(-180.000000) translate(-21.735689, -8.956583) "></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

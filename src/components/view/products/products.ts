@@ -1,4 +1,7 @@
 import './products.css'
+import '../cart/cart.css'
+import '../order/order.css'
+
 import {SrcItem, Nullable} from '../../base/base'
 import {setElement} from '../../base/functions'
 

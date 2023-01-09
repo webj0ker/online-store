@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
     <title>Online store</title>
   </head>
+
   <body class="body">
     <header class="header">
       <div class="header__wrapper wrapper">
@@ -92,6 +93,90 @@
           </div>
         </div>
         <div class="products grid-view"></div>
+        <div class="cart table-view">
+          <div class="cartItem">
+            <div class="item-descriptions">
+              <div
+                class="products__meta-photo"
+                style="
+                  background-image: url('https://i.dummyjson.com/data/products/28/1.jpg');
+                "
+              ></div>
+              <div class="item-info">
+                <h3 class="title">3D Embellishment Art Lamp</h3>
+              </div>
+            </div>
+            <div class="item-amount">
+              <span
+                class="item-amount-btn-minus"
+                data-entity="item-quantity-minus"
+              ></span>
+              <div class="item-amount-filed-block">
+                <input
+                  type="text"
+                  class="item-amount-filed"
+                  value="1"
+                  data-value="1"
+                  data-entity="item-quantity-field"
+                />
+              </div>
+              <span
+                class="item-amount-btn-plus"
+                data-entity="item-quantity-plus"
+              ></span>
+            </div>
+            <div class="item-price-current">
+              <span class="price" id="item-sum-price">20</span>
+            </div>
+            <div class="item-block-actions">
+              <span
+                class="item-actions-remove"
+                data-entity="item-delete"
+              ></span>
+            </div>
+          </div>
+          <div class="cartItem">
+            <div class="item-descriptions">
+              <div
+                class="products__meta-photo"
+                style="
+                  background-image: url('https://i.dummyjson.com/data/products/28/2.jpg');
+                "
+              ></div>
+            </div>
+            <div class="item-info">
+              <h3 class="title">3D Embellishment Art Lamp</h3>
+            </div>
+            <div class="item-amount">
+              <span
+                class="item-amount-btn-minus"
+                data-entity="item-quantity-minus"
+              ></span>
+              <div class="item-amount-filed-block">
+                <input
+                  type="text"
+                  class="item-amount-filed"
+                  value="1"
+                  data-value="1"
+                  data-entity="item-quantity-field"
+                />
+              </div>
+              <span
+                class="item-amount-btn-plus"
+                data-entity="item-quantity-plus"
+              ></span>
+            </div>
+            <div class="item-price-current">
+              <span class="price" id="item-sum-price">20</span>
+            </div>
+            <div class="item-block-actions">
+              <span
+                class="item-actions-remove"
+                data-entity="item-delete"
+              ></span>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="openModal" class="modal">
         <div class="modal-dialog">
@@ -103,6 +188,314 @@
             <div class="modal-body"></div>
           </div>
         </div>
+      </div>
+      <div class="order">
+        <form id="form" class="form">
+          <div class="order__private">
+            <h3 class="order__header">Личные данные</h3>
+            <div class="card">
+              <div class="row">
+                <app-input class="full-width">
+                  <div class="app-input">
+                    <div class="content-container">
+                      <div class="content">
+                        <input
+                          value=""
+                          type="text"
+                          appinputinstance=""
+                          name="data[name]"
+                          autocomplete="user-name"
+                          username=""
+                          class="form__text input-user-name ng-invalid"
+                          placeholder="Иван Иванов"
+                        />
+                        <label class="form__label">Имя Фамилия:</label>
+                      </div>
+                      <div class="result-icon"></div>
+                    </div>
+                  </div>
+                </app-input>
+              </div>
+              <div class="row">
+                <app-input class="full-width">
+                  <div class="app-input">
+                    <div class="content-container">
+                      <div class="content">
+                        <input
+                          value=""
+                          type="text"
+                          appinputinstance=""
+                          name="data[addr]"
+                          class="form__text address-input ng-invalid"
+                          maxlength="255"
+                          placeholder="Город, Улица, дом-99"
+                          autocomplete="nope"
+                          role="textbox"
+                          autocomplete="user-address"
+                          useraddress=""
+                          aria-autocomplete="list"
+                          aria-haspopup="true"
+                        />
+                        <label class="form__label">Адрес доставки:</label>
+                      </div>
+                      <div class="result-icon"></div>
+                    </div>
+                  </div>
+                </app-input>
+              </div>
+              <div class="row">
+                <app-input class="full-width">
+                  <div class="app-input">
+                    <div class="content-container">
+                      <div class="content">
+                        <input
+                          value=""
+                          type="email"
+                          appinputinstance=""
+                          name="data[email]"
+                          class="form__text input-user-email check-email ng-invalid"
+                          autocomplete="off"
+                          autocomplete="email"
+                          email=""
+                        />
+                        <label class="form__label">E-mail:</label>
+                      </div>
+                      <div class="result-icon"></div>
+                    </div>
+                  </div>
+                </app-input>
+              </div>
+              <div class="row">
+                <app-input class="full-width">
+                  <div class="app-input">
+                    <div class="content-container">
+                      <div class="content">
+                        <input
+                          value=""
+                          type="tel"
+                          appinputinstance=""
+                          autocomplete="nope"
+                          name="data[phone]"
+                          class="form__text input-tel ng-invalid"
+                          autocomplete="phone-number"
+                          phonenumber=""
+                          placeholder="+375 (29) 0000000"
+                          minlength="9"
+                          maxlength="17"
+                        />
+                        <label class="form__label">Телефон:</label>
+                      </div>
+                      <div class="result-icon"></div>
+                    </div>
+                  </div>
+                </app-input>
+              </div>
+            </div>
+          </div>
+          <h3 class="card__header">Данные платежной карты</h3>
+          <div class="card">
+            <div class="row">
+              <app-input class="full-width">
+                <div class="app-input">
+                  <div class="content-container">
+                    <div class="content">
+                      <input
+                        appinputinstance=""
+                        formcontrolname="creditCard"
+                        id="cc-number"
+                        type="tel"
+                        autocomplete="cc-number"
+                        ccnumber=""
+                        trimvalue=""
+                        class="ng-untouched ng-pristine ng-invalid"
+                        data-dropdown-opened="false"
+                        data-lpignore="true"
+                        placeholder="0000 0000 0000 0000"
+                        value=""
+                        maxlength="22"
+                      />
+                      <label class="">Номер карты</label>
+                      <!---->
+                    </div>
+                    <div class="icons-container">
+                      <div inputicon="" class="cards-brands">
+                        <div
+                          class="cards-brands cards-brands__container brandsState"
+                        >
+                          <img
+                            class=""
+                            src="assets/card-types/mastercard-system.svg"
+                            alt="mastercard-system"
+                          />
+                          <img
+                            class=""
+                            src="assets/card-types/visa-system.svg"
+                            alt="visa-system"
+                          />
+                          <img
+                            class=""
+                            src="assets/card-types/belkart-system.svg"
+                            alt="belkart-system"
+                          />
+                          <!---->
+                          <div class="cards-brands cards-brands_random">
+                            <img
+                              class="randomCardState"
+                              src="assets/card-types/mir-system-ru.svg"
+                              alt="mir-system-ru"
+                            />
+                            <img
+                              class="randomCardState"
+                              src="assets/card-types/maestro-system.svg"
+                              alt="maestro-system"
+                            />
+                            <!---->
+                          </div>
+                          <!---->
+                        </div>
+                        <!---->
+                        <!---->
+                      </div>
+                    </div>
+                    <div class="result-icon"></div>
+                    <!---->
+                    <!---->
+                  </div>
+                </div>
+                <!---->
+              </app-input>
+            </div>
+            <!---->
+            <div class="row">
+              <div class="expires-input">
+                <app-input class="">
+                  <div class="app-input">
+                    <div class="content-container">
+                      <div class="content">
+                        <input
+                          appinputinstance=""
+                          formcontrolname="expirationDate"
+                          type="tel"
+                          id="cc-exp"
+                          autocomplete="cc-exp"
+                          maxlength="7"
+                          ccexp=""
+                          trimvalue=""
+                          class="date-input ng-untouched ng-pristine ng-invalid"
+                          data-lpignore="true"
+                          placeholder="MM / YY"
+                          value=""
+                        />
+                        <label class="">Срок действия</label>
+                        <!---->
+                      </div>
+                      <div class="icons-container"></div>
+                      <div class="result-icon"></div>
+                      <!---->
+                      <!---->
+                    </div>
+                  </div>
+                  <!---->
+                </app-input>
+              </div>
+              <!---->
+              <div class="inputs-spacer"></div>
+              <!---->
+              <div class="cvc-input">
+                <app-input class="cvc">
+                  <div class="app-input">
+                    <div class="content-container">
+                      <div class="content">
+                        <input
+                          type="tel"
+                          appinputinstance=""
+                          formcontrolname="cvc"
+                          autocomplete="cc-csc"
+                          id="cc-csc"
+                          name="verification_value"
+                          cccvc=""
+                          trimvalue=""
+                          class="ng-untouched ng-pristine ng-invalid"
+                          data-lpignore="true"
+                          maxlength="4"
+                          value=""
+                        />
+                        <label class="">CVC</label>
+                        <!---->
+                      </div>
+                      <div class="icons-container">
+                        <div inputicon="" class="tooltip-wrapper">
+                          <svg-icon
+                            src="/assets/alert-icon.svg"
+                            class="alert-icon"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="feather feather-alert-circle"
+                            >
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <line x1="12" y1="8" x2="12" y2="12"></line>
+                              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                          </svg-icon>
+                          <!---->
+                        </div>
+                      </div>
+                      <div class="result-icon"></div>
+                      <!---->
+                      <!---->
+                    </div>
+                  </div>
+                  <!---->
+                </app-input>
+              </div>
+              <!---->
+            </div>
+            <!---->
+            <div class="row">
+              <app-input class="full-width">
+                <div class="app-input">
+                  <div class="content-container">
+                    <div class="content">
+                      <input
+                        appinputinstance=""
+                        formcontrolname="holder"
+                        autocomplete="cc-name"
+                        id="cc-name"
+                        trimvalue=""
+                        class="ng-untouched ng-pristine ng-invalid"
+                        data-lpignore="true"
+                        value=""
+                      />
+                      <label class="">Имя держателя (как на карте)</label>
+                      <!---->
+                    </div>
+                    <div class="icons-container"></div>
+                    <div class="result-icon"></div>
+                    <!---->
+                    <!---->
+                  </div>
+                </div>
+                <!---->
+              </app-input>
+            </div>
+            <!---->
+            <!---->
+            <!---->
+          </div>
+          <button class="button button__order" id="button__order" type="submit">
+            <!-- <span class="button__text">Оформить заказ</span> -->
+            <input type="submit" value="Оформить заказ" />
+          </button>
+        </form>
       </div>
     </main>
     <footer class="footer">
@@ -174,7 +567,7 @@
             </p>
             <ul class="product__buttons">
               <li>
-                <a class="main" href="">Купить</a>
+                <a class="main" href="">В корзину</a>
               </li>
             </ul>
           </div>
@@ -212,6 +605,39 @@
             </ul>
           </div>
         </div>
+      </div>
+    </template>
+    <template id="cartItem">
+      <div class="item-descriptions">
+        <img src="" alt="photo" srcset="" />
+        <div class="item-info">
+          <h3 class="title"></h3>
+        </div>
+      </div>
+      <div class="item-amount">
+        <span
+          class="item-amount-btn-minus"
+          data-entity="item-quantity-minus"
+        ></span>
+        <div class="item-amount-filed-block">
+          <input
+            type="text"
+            class="item-amount-filed"
+            value="1"
+            data-value="1"
+            data-entity="item-quantity-field"
+          />
+        </div>
+        <span
+          class="item-amount-btn-plus"
+          data-entity="item-quantity-plus"
+        ></span>
+      </div>
+      <div class="item-price-current">
+        <span class="price" id="item-sum-price"></span>
+      </div>
+      <div class="item-block-actions">
+        <span class="item-actions-remove" data-entity="item-delete"></span>
       </div>
     </template>
   </body>

@@ -107,7 +107,7 @@ input[type='range']::-webkit-slider-thumb:before {
   align-items: center;
 }
 
-.row {
+.sorting .row {
   display: flex;
   align-items: center;
   margin-right: -15px;
