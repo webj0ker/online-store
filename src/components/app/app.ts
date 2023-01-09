@@ -1,9 +1,8 @@
 import AppController from '../controller/controller'
 import {AppView} from '../view/appView'
 import {Nullable, SrcItem} from '../base/base'
-import initialize from '../view/order/order'
 import cart_initialize from '../view/cart/cart'
-
+//import initialize from '../view/order/order'
 class App {
   public controller: AppController
   public view: AppView
@@ -23,7 +22,10 @@ class App {
   public set addProduct(value: SrcItem) {
     this.controller.cartProducts.push(value)
   }
-
+  public set delProduct(value: SrcItem) {
+    const index = this.controller.cartProducts.indexOf(value)
+    this.controller.cartProducts.splice(index, 1)
+  }
   public filterCategories(value: string): SrcItem[] {
     return this.controller.categories.filter((item: SrcItem) =>
       item.category.toLowerCase().includes(value.toLowerCase())
@@ -122,7 +124,7 @@ class App {
       ?.addEventListener('click', () =>
         this.view.drawCategories(this.controller.categories)
       )
-    initialize()
+    //initialize()
     cart_initialize()
   }
 

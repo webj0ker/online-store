@@ -11,7 +11,7 @@ class Products {
     const fragment: DocumentFragment = document.createDocumentFragment()
     const productsItemTemp: Nullable<HTMLTemplateElement> =
       document.querySelector<HTMLTemplateElement>('#productsItemTemp')
-
+    const cartProducts = app.cartProducts
     data.forEach((item: SrcItem, index: number) => {
       const productsClone: Nullable<HTMLTemplateElement> =
         productsItemTemp?.content?.cloneNode(true) as HTMLTemplateElement
@@ -78,16 +78,30 @@ class Products {
           for (let index = 0; index < products.length; index++) {
             const element = products[index]
             if (parseInt(element.id) === productId) {
-              app.addProduct = element
               const countSpan =
                 document.querySelector<HTMLElement>('.icon .count')
               const countIntoCart = countSpan.innerText
-              countSpan.innerText = `${parseInt(countIntoCart) + 1}`
+              if (btn_cart.classList.contains('active')) {
+                countSpan.innerText = `${parseInt(countIntoCart) - 1}`
+                app.delProduct = element
+              } else {
+                countSpan.innerText = `${parseInt(countIntoCart) + 1}`
+                app.addProduct = element
+              }
               btn_cart.classList.toggle('active')
               return
             }
           }
         })
+      for (let index = 0; index < cartProducts.length; index++) {
+        const element = cartProducts[index]
+        if (element.id === item.id) {
+          productsClone
+            .querySelector<HTMLElement>('.product__buttons .btn_cart')
+            .classList.toggle('active')
+          break
+        }
+      }
       fragment.append(productsClone)
     })
     setElement('.products', 'innerHTML', '')

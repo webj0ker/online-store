@@ -16,6 +16,7 @@
   padding: 0;
 }
 /* при отображении модального окно */
+.modal.active,
 .modal:target {
   opacity: 1; /* делаем окно видимым */
   pointer-events: auto; /* элемент видим для событий мыши */

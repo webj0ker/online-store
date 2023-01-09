@@ -132,6 +132,153 @@
           </div>
         </div>
       </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__wrapper wrapper">
+        <a href="https://rs.school/js/" target="_blank">
+          <img
+            class="logo-rss"
+            src="assets/rs_school_js.svg"
+            alt="RS School JavaScript/Front-end course"
+          />
+        </a>
+        <div class="author-info">
+          <span>2022</span>
+          <a href="https://github.com/VladimirLGit" target="_blank">
+            <img class="logo-github" src="assets/github.svg" alt="github.com" />
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <template id="categoryItemTemp">
+      <div class="category__item">
+        <span class="category__item-name"></span>
+      </div>
+    </template>
+
+    <template id="filterItemTemp">
+      <div class="filter__item">
+        <input type="checkbox" id="filter__item-name" />
+        <label for="filter__item-name"></label>
+        <span class="filter__item-count"></span>
+      </div>
+    </template>
+
+    <template id="filterSliderItemTemp">
+      <div class="filter__range">
+        <h3 class="filter__range-caption"></h3>
+        <div class="filter__range-out-data">
+          <div class="from-data" id="fromData"></div>
+          <!---->
+          ⟷
+          <div class="to-data" id="toData"></div>
+        </div>
+        <div class="filter__range-multi-range">
+          <input type="range" min="0" max="100" class="range-left-point" />
+          <input type="range" min="0" max="100" class="range-right-point" />
+        </div>
+      </div>
+    </template>
+    <template id="productsItemTemp">
+      <div class="products__item">
+        <div class="products__meta">
+          <div class="products__meta-photo"></div>
+          <ul class="products__meta-details">
+            <li class="products__meta-brand"></li>
+            <li class="products__meta-date"></li>
+          </ul>
+        </div>
+        <div class="products__description">
+          <div class="products__data">
+            <h2 class="products__description-title"></h2>
+            <h3 class="products__description-price"></h3>
+            <h3 class="products__description-rating"></h3>
+            <p class="products__description-content"></p>
+          </div>
+          <div class="products__details">
+            <p class="products__read-more">
+              <a href="#openModal">Read More</a>
+            </p>
+            <ul class="product__buttons">
+              <li>
+                <div class="btn_cart">В корзину</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </template>
+    <template id="productTemp">
+      <div class="product__item">
+        <div class="slider">
+          <div class="images">
+            <!-- <img src=""> -->
+          </div>
+          <div class="btm-slides">
+            <!-- <span onclick=""></span> -->
+          </div>
+          <div class="sliders left" id="-1">
+            <span class="fa fa-angle-left"></span>
+          </div>
+          <div class="sliders right" id="1">
+            <span class="fa fa-angle-right"></span>
+          </div>
+        </div>
+        <div class="products__description">
+          <div class="products__data">
+            <h2 class="products__description-title"></h2>
+            <h3 class="products__description-price"></h3>
+            <h3 class="products__description-rating"></h3>
+            <p class="products__description-content"></p>
+          </div>
+          <div class="products__details">
+            <ul class="product__buttons">
+              <li>
+                <a class="main" href="">Купить</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </template>
+    <template id="cartItem">
+      <div class="cartItem">
+        <div class="item-descriptions">
+          <div class="products__meta-photo"></div>
+        </div>
+        <div class="item-info">
+          <h3 class="title"></h3>
+        </div>
+        <div class="item-amount">
+          <span
+            class="item-amount-btn-minus"
+            data-entity="item-quantity-minus"
+          ></span>
+          <div class="item-amount-filed-block">
+            <input
+              type="text"
+              class="item-amount-filed"
+              value="1"
+              data-value="1"
+              data-entity="item-quantity-field"
+            />
+          </div>
+          <span
+            class="item-amount-btn-plus"
+            data-entity="item-quantity-plus"
+          ></span>
+        </div>
+        <div class="item-price-current">
+          <span class="price" id="item-sum-price"></span>
+        </div>
+        <div class="item-block-actions">
+          <span class="item-actions-remove" data-entity="item-delete"></span>
+        </div>
+      </div>
+    </template>
+
+    <template class="order">
       <div class="order">
         <form id="form" class="form">
           <div class="order__private">
@@ -439,150 +586,6 @@
             <input type="submit" value="Оформить заказ" />
           </button>
         </form>
-      </div>
-    </main>
-    <footer class="footer">
-      <div class="footer__wrapper wrapper">
-        <a href="https://rs.school/js/" target="_blank">
-          <img
-            class="logo-rss"
-            src="assets/rs_school_js.svg"
-            alt="RS School JavaScript/Front-end course"
-          />
-        </a>
-        <div class="author-info">
-          <span>2022</span>
-          <a href="https://github.com/VladimirLGit" target="_blank">
-            <img class="logo-github" src="assets/github.svg" alt="github.com" />
-          </a>
-        </div>
-      </div>
-    </footer>
-
-    <template id="categoryItemTemp">
-      <div class="category__item">
-        <span class="category__item-name"></span>
-      </div>
-    </template>
-
-    <template id="filterItemTemp">
-      <div class="filter__item">
-        <input type="checkbox" id="filter__item-name" />
-        <label for="filter__item-name"></label>
-        <span class="filter__item-count"></span>
-      </div>
-    </template>
-
-    <template id="filterSliderItemTemp">
-      <div class="filter__range">
-        <h3 class="filter__range-caption"></h3>
-        <div class="filter__range-out-data">
-          <div class="from-data" id="fromData"></div>
-          <!---->
-          ⟷
-          <div class="to-data" id="toData"></div>
-        </div>
-        <div class="filter__range-multi-range">
-          <input type="range" min="0" max="100" class="range-left-point" />
-          <input type="range" min="0" max="100" class="range-right-point" />
-        </div>
-      </div>
-    </template>
-    <template id="productsItemTemp">
-      <div class="products__item">
-        <div class="products__meta">
-          <div class="products__meta-photo"></div>
-          <ul class="products__meta-details">
-            <li class="products__meta-brand"></li>
-            <li class="products__meta-date"></li>
-          </ul>
-        </div>
-        <div class="products__description">
-          <div class="products__data">
-            <h2 class="products__description-title"></h2>
-            <h3 class="products__description-price"></h3>
-            <h3 class="products__description-rating"></h3>
-            <p class="products__description-content"></p>
-          </div>
-          <div class="products__details">
-            <p class="products__read-more">
-              <a href="#openModal">Read More</a>
-            </p>
-            <ul class="product__buttons">
-              <li>
-                <div class="btn_cart">В корзину</div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </template>
-    <template id="productTemp">
-      <div class="product__item">
-        <div class="slider">
-          <div class="images">
-            <!-- <img src=""> -->
-          </div>
-          <div class="btm-slides">
-            <!-- <span onclick=""></span> -->
-          </div>
-          <div class="sliders left" id="-1">
-            <span class="fa fa-angle-left"></span>
-          </div>
-          <div class="sliders right" id="1">
-            <span class="fa fa-angle-right"></span>
-          </div>
-        </div>
-        <div class="products__description">
-          <div class="products__data">
-            <h2 class="products__description-title"></h2>
-            <h3 class="products__description-price"></h3>
-            <h3 class="products__description-rating"></h3>
-            <p class="products__description-content"></p>
-          </div>
-          <div class="products__details">
-            <ul class="product__buttons">
-              <li>
-                <a class="main" href="">Купить</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </template>
-    <template id="cartItem">
-      <div class="cartItem">
-        <div class="item-descriptions">
-          <div class="products__meta-photo"></div>
-        </div>
-        <div class="item-info">
-          <h3 class="title"></h3>
-        </div>
-        <div class="item-amount">
-          <span
-            class="item-amount-btn-minus"
-            data-entity="item-quantity-minus"
-          ></span>
-          <div class="item-amount-filed-block">
-            <input
-              type="text"
-              class="item-amount-filed"
-              value="1"
-              data-value="1"
-              data-entity="item-quantity-field"
-            />
-          </div>
-          <span
-            class="item-amount-btn-plus"
-            data-entity="item-quantity-plus"
-          ></span>
-        </div>
-        <div class="item-price-current">
-          <span class="price" id="item-sum-price"></span>
-        </div>
-        <div class="item-block-actions">
-          <span class="item-actions-remove" data-entity="item-delete"></span>
-        </div>
       </div>
     </template>
   </body>

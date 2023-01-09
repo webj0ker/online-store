@@ -33,7 +33,7 @@
 */
 
 import {checkCreditCard} from './checkCard'
-
+let checkValidate = true
 function initialize() {
   const username = document.querySelector(
     '.input-user-name'
@@ -51,6 +51,13 @@ function initialize() {
     e.preventDefault()
 
     checkInputs()
+
+    if (checkValidate) {
+      alert('Ваш заказ оформлен')
+      setTimeout(function () {
+        window.location.href = window.location.href.split('?')[0]
+      }, 3 * 1000)
+    }
   })
 
   ccNumber.addEventListener('input', (e) => {
@@ -219,6 +226,7 @@ function setSuccessFor(input: HTMLInputElement) {
     <polyline points="20 6 9 17 4 12"></polyline>
   </svg>
 </svg-icon>`
+  checkValidate = true
 }
 
 function setErrorFor(input: HTMLInputElement) {
@@ -234,6 +242,7 @@ function setErrorFor(input: HTMLInputElement) {
     <line x1="12" y1="16" x2="12.01" y2="16"></line>
   </svg>
 </svg-icon>`
+  checkValidate = false
 }
 
 function isEmail(email: string) {

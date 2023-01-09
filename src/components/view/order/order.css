@@ -13,7 +13,9 @@
 }
 
 .order {
+  display: none;
   text-align: center;
+  justify-content: space-around;
 }
 
 .order h3 {
