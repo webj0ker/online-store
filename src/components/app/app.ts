@@ -2,6 +2,7 @@ import AppController from '../controller/controller'
 import {AppView} from '../view/appView'
 import {Nullable, SrcItem} from '../base/base'
 import initialize from '../view/order/order'
+import cart_initialize from '../view/cart/cart'
 
 class App {
   public controller: AppController
@@ -14,6 +15,13 @@ class App {
 
   public get products(): SrcItem[] {
     return this.controller.products
+  }
+
+  public get cartProducts(): SrcItem[] {
+    return this.controller.cartProducts
+  }
+  public set addProduct(value: SrcItem) {
+    this.controller.cartProducts.push(value)
   }
 
   public filterCategories(value: string): SrcItem[] {
@@ -80,6 +88,12 @@ class App {
           this.view.filters.viewFilter.category = (
             e.target as HTMLElement
           ).textContent
+          document
+            .querySelector<HTMLElement>('.products')
+            ?.style.setProperty('display', 'flex')
+          document
+            .querySelector<HTMLElement>('.cart-container')
+            ?.style.setProperty('display', 'none')
           this.view.filters.viewFilter.brands = []
           this.view.filters.viewFilter.minPrice = 0
           this.view.filters.viewFilter.maxPrice = 0
@@ -109,6 +123,7 @@ class App {
         this.view.drawCategories(this.controller.categories)
       )
     initialize()
+    cart_initialize()
   }
 
   /**

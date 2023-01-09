@@ -41,7 +41,7 @@ html {
   margin-bottom: 0;
 }
 
-.header__wrapper .cart ul li.focus {
+.header__wrapper .cart-body ul li.focus {
   padding: 6px 6px 4px;
   /* background: #b68c33; */
   border-radius: 50%;
@@ -64,7 +64,7 @@ a {
   background-color: transparent;
 }
 
-.cart ul li.focus .icon .count {
+.cart-body ul li.focus .icon .count {
   position: relative;
   /* left: 15px; */
   top: -20px;
@@ -80,6 +80,10 @@ a {
 
 .main {
   flex: 1 0 auto;
+}
+
+.categories {
+  margin-top: 10px;
 }
 
 .footer__wrapper {

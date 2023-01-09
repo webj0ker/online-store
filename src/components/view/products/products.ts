@@ -4,6 +4,7 @@ import '../order/order.css'
 
 import {SrcItem, Nullable} from '../../base/base'
 import {setElement} from '../../base/functions'
+import app from '../../..'
 
 class Products {
   draw(data: SrcItem[]) {
@@ -65,6 +66,28 @@ class Products {
       productsClone
         .querySelector<HTMLElement>('.products__read-more a')
         ?.setAttribute('id', item.id)
+      productsClone
+        .querySelector<HTMLElement>('.product__buttons .btn_cart')
+        ?.setAttribute('id', item.id)
+      productsClone
+        .querySelector<HTMLElement>('.product__buttons .btn_cart')
+        .addEventListener('click', (e) => {
+          const btn_cart = e.target as HTMLElement
+          const productId = parseInt((e.target as HTMLElement).id)
+          const products = app.products
+          for (let index = 0; index < products.length; index++) {
+            const element = products[index]
+            if (parseInt(element.id) === productId) {
+              app.addProduct = element
+              const countSpan =
+                document.querySelector<HTMLElement>('.icon .count')
+              const countIntoCart = countSpan.innerText
+              countSpan.innerText = `${parseInt(countIntoCart) + 1}`
+              btn_cart.classList.toggle('active')
+              return
+            }
+          }
+        })
       fragment.append(productsClone)
     })
     setElement('.products', 'innerHTML', '')

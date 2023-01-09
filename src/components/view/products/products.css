@@ -1,5 +1,6 @@
 .products {
   display: flex;
+  margin-top: 10px;
 }
 
 .grid-view {
@@ -131,7 +132,7 @@ ul.product__buttons {
   list-style: none;
 }
 
-ul.product__buttons li a {
+ul.product__buttons li .btn_cart {
   display: inline-block;
   width: 100%;
   padding: 10px 15px;
@@ -144,8 +145,16 @@ ul.product__buttons li a {
   transition: 0.3s;
 }
 
-.products__item:hover ul.product__buttons li a:hover {
+.products__item:hover ul.product__buttons li .btn_cart:hover {
   background: #2d4c8679;
+}
+
+ul.product__buttons li .btn_cart.active {
+  background: #65cc04ad;
+}
+
+.products__item:hover ul.product__buttons li .btn_cart.active:hover {
+  background: #65cc0465;
 }
 
 .products__item p:first-of-type {
