@@ -39,6 +39,7 @@ html {
   margin-left: 0;
   padding: 0;
   margin-bottom: 0;
+  cursor: pointer;
 }
 
 .header__wrapper .cart-body ul li.focus {

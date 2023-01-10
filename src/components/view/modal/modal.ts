@@ -59,6 +59,31 @@ function viewModal() {
             item.description,
             productsClone
           )
+          productsClone.querySelector<HTMLElement>('.btn_cart').id = item.id
+          productsClone
+            .querySelector<HTMLElement>('.btn_cart')
+            .addEventListener('click', (e) => {
+              const btn_cart = e.target as HTMLElement
+              const productId = parseInt((e.target as HTMLElement).id)
+              const products = app.products
+              for (let index = 0; index < products.length; index++) {
+                const element = products[index]
+                if (parseInt(element.id) === productId) {
+                  const countSpan =
+                    document.querySelector<HTMLElement>('.icon .count')
+                  const countIntoCart = countSpan.innerText
+                  if (btn_cart.classList.contains('active')) {
+                    countSpan.innerText = `${parseInt(countIntoCart) - 1}`
+                    app.delProduct = element
+                  } else {
+                    countSpan.innerText = `${parseInt(countIntoCart) + 1}`
+                    app.addProduct = element
+                  }
+                  btn_cart.classList.toggle('active')
+                  return
+                }
+              }
+            })
           fragment.append(productsClone)
           setElement('.modal-body', 'innerHTML', '')
           document

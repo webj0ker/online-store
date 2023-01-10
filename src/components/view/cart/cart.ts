@@ -20,6 +20,86 @@ function cart_initialize() {
       setElement('.title', 'textContent', value.title, productsClone)
       setElement('.price', 'textContent', value.price.toString(), productsClone)
       totalPrice += value.price
+      productsClone.querySelector<HTMLElement>('.item-amount-btn-minus').id =
+        value.id
+      productsClone.querySelector<HTMLElement>('.item-amount-btn-plus').id =
+        value.id
+      productsClone
+        .querySelector<HTMLElement>('.item-amount-btn-minus')
+        .addEventListener('click', (e) => {
+          const productId = parseInt((e.target as HTMLElement).id)
+          const products = app.products
+          for (let index = 0; index < products.length; index++) {
+            const element = products[index]
+            if (parseInt(element.id) === productId) {
+              const countSpan =
+                document.querySelector<HTMLElement>('.icon .count')
+              const countEdit = (
+                e.target as HTMLElement
+              ).parentElement.querySelector<HTMLInputElement>(
+                '.item-amount-filed'
+              )
+              const countIntoCart = countSpan.innerText
+              countSpan.innerText = `${parseInt(countIntoCart) - 1}`
+              countEdit.value = `${parseInt(countEdit.value) - 1}`
+              app.delProduct = element
+              const currentSum = (
+                e.target as HTMLElement
+              ).parentElement.parentElement.querySelector<HTMLSpanElement>(
+                '.price'
+              )
+              currentSum.innerText = `${
+                parseInt(countEdit.value) * element.price
+              }`
+              const totalSum = document.querySelector<HTMLSpanElement>(
+                '.coupon-block-total-price-current'
+              )
+              totalSum.innerText = `${
+                parseInt(totalSum.innerText) - element.price
+              }`
+              return
+            }
+          }
+        })
+
+      productsClone
+        .querySelector<HTMLElement>('.item-amount-btn-plus')
+        .addEventListener('click', (e) => {
+          const productId = parseInt((e.target as HTMLElement).id)
+          const products = app.products
+          for (let index = 0; index < products.length; index++) {
+            const element = products[index]
+            if (parseInt(element.id) === productId) {
+              const countSpan =
+                document.querySelector<HTMLElement>('.icon .count')
+              const countEdit = (
+                e.target as HTMLElement
+              ).parentElement.querySelector<HTMLInputElement>(
+                '.item-amount-filed'
+              )
+              const countIntoCart = countSpan.innerText
+              countEdit.value = `${parseInt(countEdit.value) + 1}`
+              countSpan.innerText = `${parseInt(countIntoCart) + 1}`
+              app.addProduct = element
+              const currentSum = (
+                e.target as HTMLElement
+              ).parentElement.parentElement.querySelector<HTMLSpanElement>(
+                '.price'
+              )
+              currentSum.innerText = `${
+                parseInt(countEdit.value) * element.price
+              }`
+              const totalSum = document.querySelector<HTMLSpanElement>(
+                '.coupon-block-total-price-current'
+              )
+              totalSum.innerText = `${
+                parseInt(totalSum.innerText) + element.price
+              }`
+              return
+            }
+          }
+        })
+
       fragment.append(productsClone)
     })
     setElement('.cart', 'innerHTML', '')
